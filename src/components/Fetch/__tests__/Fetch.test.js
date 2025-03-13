@@ -1,6 +1,7 @@
 import { act } from "react"
 import Fetch from "../Fetch.js"
 import { render, fireEvent, cleanup } from "@testing-library/react"
+import React from 'react';
 
 afterEach(cleanup)
 
@@ -10,15 +11,22 @@ test('starts without any joke', () => {
 - Render the component
 - Assert that the joke element doesn't exist
 */
+const { queryByTestId } = render(<Fetch />)
+expect(queryByTestId("fetch-joke")).toBeNull()
+
 });
 
 test('when clicking on button, displays loading message', () => {
+  
 /*
 2️⃣ [Loading State Test] The second test should handle a button click that displays a loading message.
 - Render the component
 - Emmulate a button click using `fireEvent.click()`
 - Assert that loading message is displayed
 */
+const {getByTestId,getByText} = render (<Fetch />)
+fireEvent.click(getByText("Get a Chuck Norris joke"))
+expect(getByTestId("fetch-loading").textContent).toBe("Loading...")
 });
 
 test('when clicking on button displays joke if API succeeds', async () => {
