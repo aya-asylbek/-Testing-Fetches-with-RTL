@@ -1,7 +1,6 @@
-import { act } from "react"
+import React from "react";
 import Fetch from "../Fetch.js"
 import { render, fireEvent, cleanup } from "@testing-library/react"
-import React from 'react';
 
 afterEach(cleanup)
 
